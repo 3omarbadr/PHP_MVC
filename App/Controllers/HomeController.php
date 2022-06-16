@@ -1,10 +1,12 @@
 <?php
 namespace App\Controllers;
 
+use PhpMvc\View\View;
+
 class HomeController
 {
     public function index()
     {
-        echo 'home';
+        return View::make('home.index');
     }
 }
