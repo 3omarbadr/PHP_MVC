@@ -1,5 +1,6 @@
 <?php
 
+use PhpMvc\Application;
 use PhpMvc\View\View;
 
 if (!function_exists('env')) {
@@ -8,6 +9,22 @@ if (!function_exists('env')) {
         return $_ENV[$key] ?? value($default);
     }
 }
+
+
+if (!function_exists('app')) {
+    function app()
+    {
+        static $instance = null;
+
+        if(!$instance)
+        {
+            $instance = new Application;
+        }
+
+        return $instance;
+    }
+}
+
 
 
 
