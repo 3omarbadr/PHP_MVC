@@ -4,6 +4,7 @@ namespace PhpMvc\Http;
 
 use PhpMvc\Http\Request;
 use PhpMvc\Http\Response;
+use PhpMvc\View\View;
 
 class Route
 {
@@ -33,6 +34,10 @@ class Route
         $method = $this->request->method();
 
         $action = self::$routes[$method][$path] ?? false;
+
+        if (!array_key_exists($path, self::$routes[$method])) {
+            View::makeError('404');
+        }
 
 
         if (is_callable($action)) {
