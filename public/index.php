@@ -1,6 +1,7 @@
 <?php
 
 use Dotenv\Dotenv;
+use PhpMvc\Support\Hash;
 
 require_once __DIR__ . '/../src/Support/helpers.php';
 require_once base_path() . 'vendor/autoload.php';
@@ -13,4 +14,4 @@ $env->load();
 
 app()->run();
 
-var_dump(app()->config);
+var_dump(Hash::password('123'));
