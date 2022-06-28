@@ -1,7 +1,7 @@
 <?php
 
 use Dotenv\Dotenv;
-use PhpMvc\Support\Hash;
+use PhpMvc\Validation\Validator;
 
 require_once __DIR__ . '/../src/Support/helpers.php';
 require_once base_path() . 'vendor/autoload.php';
@@ -14,4 +14,14 @@ $env->load();
 
 app()->run();
 
-var_dump(Hash::password('123'));
+$validator = new Validator();
+
+$validator->setRules([
+    'username' => 'required|string',
+    'email' => 'required|email'
+]);
+
+$validator->make([
+    'username' => 'omarbadr',
+    'email' => 'omar@omar.com'
+]);
