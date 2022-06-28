@@ -19,7 +19,7 @@ class Application
         $this->request = new Request;
         $this->response = new Response;
         $this->route = new Route($this->request, $this->response);
-        // $this->config = new Config($this->loadConfigurations());
+        $this->config = new Config($this->loadConfigurations());
     }
 
     protected function loadConfigurations()
