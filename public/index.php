@@ -22,6 +22,4 @@ $arr = [
     ]
 ];
 
-Arr::forget($arr, 'db.connections.default');
-
-var_dump($arr);
+var_dump(Arr::get($arr, 'db.connections.default'));
