@@ -1,7 +1,6 @@
 <?php
 
 use Dotenv\Dotenv;
-use PhpMvc\Support\Arr;
 
 require_once __DIR__ . '/../src/Support/helpers.php';
 require_once base_path() . 'vendor/autoload.php';
@@ -14,12 +13,4 @@ $env->load();
 
 app()->run();
 
-$arr = [
-    'db' => [
-        'connections' => [
-            'default' => 'mysql'
-        ]
-    ]
-];
-
-var_dump(Arr::get($arr, 'db.connections.default'));
+var_dump(app()->config);
