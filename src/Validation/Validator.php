@@ -41,10 +41,10 @@ class Validator
         return $key ? $this->errorBag->errors[$key] : $this->errorBag->errors ;
     }
 
-    // public function alias($field)
-    // {
-    //     return $this->aliases[$field] ?? $field;
-    // }
+    public function alias($field)
+    {
+        return $this->aliases[$field] ?? $field;
+    }
 
     public function setAliases(array $aliases)
     {
