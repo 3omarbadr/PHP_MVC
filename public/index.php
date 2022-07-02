@@ -1,6 +1,7 @@
 <?php
 
 use Dotenv\Dotenv;
+use PhpMvc\Validation\Rules\RequiredRule;
 use PhpMvc\Validation\Validator;
 
 require_once __DIR__ . '/../src/Support/helpers.php';
@@ -17,11 +18,14 @@ app()->run();
 $validator = new Validator();
 
 $validator->setRules([
-    'username' => 'required|string',
+    'username' => [new RequiredRule],
     'email' => 'required|email'
 ]);
 
 $validator->make([
-    'username' => 'omarbadr',
+    'username' => "Omar",
     'email' => 'omar@omar.com'
 ]);
+
+
+var_dump($validator->errors());
