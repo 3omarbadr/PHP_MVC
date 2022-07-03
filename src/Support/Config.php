@@ -1,6 +1,6 @@
 <?php
-namespace PhpMvc\Support;
 
+namespace PhpMvc\Support;
 
 class Config implements \ArrayAccess
 {

@@ -20,6 +20,7 @@ class Application
         $this->response = new Response;
         $this->route = new Route($this->request, $this->response);
         $this->config = new Config($this->loadConfigurations());
+        // dd($this->config->items);
     }
 
     protected function loadConfigurations()

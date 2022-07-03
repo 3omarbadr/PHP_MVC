@@ -1,7 +1,7 @@
 <?php
-namespace PhpMvc\Validation\Rules\Contract;
+namespace PhpMvc\Validation\Rules\Contracts;
 
-interface Rules
+interface Rule
 {
     public function apply($field, $value, $data);
 
