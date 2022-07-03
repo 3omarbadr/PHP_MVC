@@ -1,12 +1,17 @@
 <?php
 
-use PhpMvc\Application;
 use PhpMvc\View\View;
+use PhpMvc\Application;
+use PhpMvc\Support\Hash;
 
 if (!function_exists('env')) {
-    function env($key, $default)
+    function env($key, $default = null)
     {
-        return $_ENV[$key] ?? value($default);
+        if (array_key_exists($key, $_ENV)) {
+            return $_ENV[$key];
+        }
+
+        return $default;
     }
 }
 
@@ -63,6 +68,15 @@ if (!function_exists('config_path')) {
     }
 }
 
+if (!function_exists('class_basename')) {
+    function class_basename($class)
+    {
+        $class = is_object($class) ? get_class($class) : $class;
+
+        return basename(str_replace('\\', '/', $class));
+    }
+}
+
 
 if (!function_exists('view_path')) {
     function view_path()
@@ -76,5 +90,13 @@ if (!function_exists('view')) {
     function view($view, $params = [])
     {
         View::make($view, $params);
+    }
+}
+
+
+if (!function_exists('bcrypt')) {
+    function bcrypt($data)
+    {
+        return Hash::make($data);
     }
 }
