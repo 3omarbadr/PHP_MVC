@@ -18,13 +18,12 @@ app()->run();
 $validator = new Validator();
 
 $validator->setRules([
-    'username' => [new RequiredRule],
-    'email' => 'required|email'
+    'email' => ['required','email','min:3']
 ]);
 
+
 $validator->make([
-    'username' => "Omar",
-    'email' => 'omar@omar.com'
+    'email' => 'omar'
 ]);
 
 
