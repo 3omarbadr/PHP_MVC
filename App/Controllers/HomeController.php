@@ -3,7 +3,7 @@ namespace App\Controllers;
 
 use PhpMvc\View\View;
 
-class HomeController
+class HomeController extends Controller
 {
     public function index()
     {
