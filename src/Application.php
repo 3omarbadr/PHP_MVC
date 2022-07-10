@@ -18,7 +18,7 @@ class Application
     protected Response $response;
     protected DB $db;
     protected Config $config;
-    // protected Session $session;
+    protected Session $session;
 
     public function __construct()
     {
@@ -27,7 +27,7 @@ class Application
         $this->route = new Route($this->request, $this->response);
         $this->db = new DB($this->getDatabaseDriver());
         $this->config = new Config($this->loadConfigurations());
-        // $this->session = new Session;
+        $this->session = new Session;
     }
 
     protected function getDatabaseDriver()
