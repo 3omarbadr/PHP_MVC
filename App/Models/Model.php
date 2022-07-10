@@ -4,6 +4,7 @@ namespace App\Models;
 
 use PhpMvc\Support\Str;
 
+
 abstract class Model
 {
     protected static $instance;

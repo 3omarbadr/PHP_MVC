@@ -1,7 +1,7 @@
 <?php
 
 use Dotenv\Dotenv;
-use PhpMvc\Validation\Rules\RequiredRule;
+use App\Models\User;
 use PhpMvc\Validation\Validator;
 
 require_once __DIR__ . '/../src/Support/helpers.php';
@@ -27,4 +27,7 @@ $validator->make([
 ]);
 
 
-var_dump($validator->errors());
+User::update(1,[
+    'username' => 'omar',
+    'email' => 'omar@omar.com',
+]);

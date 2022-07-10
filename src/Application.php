@@ -2,25 +2,41 @@
 
 namespace PhpMvc;
 
+use PhpMvc\Http\Route;
+use PhpMvc\Database\DB;
 use PhpMvc\Http\Request;
 use PhpMvc\Http\Response;
-use PhpMvc\Http\Route;
 use PhpMvc\Support\Config;
+use PhpMvc\Support\Session;
+use PhpMvc\Database\Managers\MySQLManager;
+use PhpMvc\Database\Managers\SQLiteManager;
 
 class Application
 {
+    protected Route $route;
     protected Request $request;
     protected Response $response;
-    protected Route $route;
+    protected DB $db;
     protected Config $config;
+    // protected Session $session;
 
     public function __construct()
     {
         $this->request = new Request;
         $this->response = new Response;
         $this->route = new Route($this->request, $this->response);
+        $this->db = new DB($this->getDatabaseDriver());
         $this->config = new Config($this->loadConfigurations());
-        // dd($this->config->items);
+        // $this->session = new Session;
+    }
+
+    protected function getDatabaseDriver()
+    {
+         return match(env('DB_DRIVER')) {
+            'sqlite' => new SQLiteManager,
+            'mysql' => new MySQLManager,
+            default => new SQLiteManager
+        };
     }
 
     protected function loadConfigurations()
@@ -38,13 +54,15 @@ class Application
 
     public function run()
     {
+        $this->db->init();
+
         $this->route->resolve();
     }
 
     public function __get($name)
     {
-        if (property_exists($this, $name)) {
-            return $this->name;
+        if(property_exists($this, $name)) {
+            return $this->$name;
         }
     }
 }

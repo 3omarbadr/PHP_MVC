@@ -1,6 +1,6 @@
 <?php
 
-namespace SecTheater\Support;
+namespace PhpMvc\Support;
 
 class Str
 {
